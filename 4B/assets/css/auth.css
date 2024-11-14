@@ -1,0 +1,24 @@
+body {
+  background-color: #f8d7da;
+}
+.container {
+  max-width: 400px;
+}
+.btn-primary {
+  background-color: #d63384;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #c8237a;
+}
+.btn-outline-primary {
+  border-color: red;
+}
+.btn-outline-primary:hover {
+  border-color: red;
+  background-color: red;
+}
+.active{
+  border-color: red !important;
+  background-color: red !important;
+}
