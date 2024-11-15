@@ -15,20 +15,20 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+      <div class="container d-flex align-items-center justify-content-between">
         <a class="navbar-brand" href="/">Task Collections</a>
-        <div class="ms-auto">
+        <div class="ms-auto user-section">
           {{#if user}}
-            <span class="me-2">Welcome, {{user.username}}</span>
+            <span class="me-3">Welcome, {{user.username}}</span>
             <form action="/logout" method="POST" style="display:inline;">
-              <button type="submit" class="btn btn-outline-danger">
+              <button type="submit" class="btn btn-outline-dark">
                 <i class="fas fa-sign-out-alt"></i>
               </button>
             </form>
           {{else}}
             <a href="/login" class="btn btn-outline-primary me-2">Login</a>
-            <a href="/register" class="btn btn-outline-primary me-2">Register</a>
+            <a href="/register" class="btn btn-outline-primary">Register</a>
           {{/if}}
         </div>
       </div>
@@ -36,8 +36,22 @@
 
     <div class="container mt-4">
       <h2 class="mb-4">My Collections</h2>
-      {{#if success_msg}}<div class="alert alert-success alert-dismissible fade show">{{success_msg}}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>{{/if}}
-      {{#if error_msg}}<div class="alert alert-danger alert-dismissible fade show">{{error_msg}}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>{{/if}}
+      {{#if success_msg}}<div
+          class="alert alert-success alert-dismissible fade show"
+        >{{success_msg}}<button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button></div>{{/if}}
+      {{#if error_msg}}<div
+          class="alert alert-danger alert-dismissible fade show"
+        >{{error_msg}}<button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button></div>{{/if}}
 
       <form action="/" method="POST" class="mb-4">
         <div class="input-group">
@@ -59,22 +73,34 @@
               <div class="card-body">
                 <h5 class="card-title">{{name}}</h5>
                 {{#if (eq completedTasksCount totalTasksCount)}}
-                  <p class="card-text">All {{completedTasksCount}} done!</p>
-                  <i class="fas fa-check-circle text-success"></i>
+                  <p class="card-text">All
+                    {{completedTasksCount}}
+                    done!
+                    <i class="fas fa-check-circle text-success"></i></p>
                 {{else}}
-                  <p>{{completedTasksCount}}/{{totalTasksCount}} done</p>
+                  <p>{{completedTasksCount}}/{{totalTasksCount}} done <i class="fas fa-clock text-danger"></i></p>
                 {{/if}}
-                <a href="/{{id}}/task" class="btn btn-primary">View Tasks</a>
-                <button
-                  class="btn btn-secondary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editCollectionModal"
-                  data-id="{{id}}"
-                  data-name="{{name}}"
-                >Edit Collection</button>
-                
-                <form action="/delete/{{id}}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
-                  <button type="submit" class="btn btn-danger btn-sm" style="position: absolute; top: 10px; right: 10px;">
+                <div class="d-flex justify-content-center gap-2">
+                  <a href="/{{id}}/task" class="btn btn-primary">View Tasks</a>
+                  <button
+                    class="btn btn-secondary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editCollectionModal"
+                    data-id="{{id}}"
+                    data-name="{{name}}"
+                  >Edit Collection</button>
+                </div>
+                <form
+                  action="/delete/{{id}}"
+                  method="POST"
+                  style="display:inline;"
+                  onsubmit="return confirmDelete();"
+                >
+                  <button
+                    type="submit"
+                    class="btn btn-danger btn-sm"
+                    style="position: absolute; top: 10px; right: 10px;"
+                  >
                     <i class="fas fa-trash"></i>
                   </button>
                 </form>
@@ -85,18 +111,37 @@
       </div>
     </div>
 
-    <div class="modal fade" id="editCollectionModal" tabindex="-1" aria-labelledby="editCollectionModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="editCollectionModal"
+      tabindex="-1"
+      aria-labelledby="editCollectionModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editCollectionModalLabel">Edit Collection</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="editCollectionModalLabel">Edit
+              Collection</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <form id="editCollectionForm" action="" method="POST">
               <div class="mb-3">
-                <label for="editCollectionName" class="form-label">Collection Name</label>
-                <input type="text" class="form-control" id="editCollectionName" name="name" required />
+                <label for="editCollectionName" class="form-label">Collection
+                  Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editCollectionName"
+                  name="name"
+                  required
+                />
               </div>
               <input type="hidden" id="editCollectionId" name="collectionId" />
               <button type="submit" class="btn btn-primary">Update Collection</button>

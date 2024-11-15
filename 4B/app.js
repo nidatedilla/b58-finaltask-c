@@ -15,7 +15,6 @@ Handlebars.registerHelper("eq", function (a, b) {
     return a === b;
 });
 
-// Middleware
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./src/views"));
 app.use("/assets", express.static(path.join(__dirname, 'assets')));
@@ -342,7 +341,6 @@ async function deleteTask(req, res) {
             return res.redirect("/");
         }
 
-        // Hapus tugas
         await sequelize.query(
             `DELETE FROM task_tb WHERE id = :taskId`,
             {

@@ -1,13 +1,11 @@
 function cetakPola(n) {
-    // Hitung lebar maksimum untuk centering
     const maxWidth = 2 * n - 1;
     
     for (let i = 0; i < n; i++) {
         let baris = '';
         
-        // Hitung spasi di awal untuk centering
         const spasiAwal = ' '.repeat(i * 2);
-        const lebarPola = (n - i) * 2 - 1;  // Lebar pola di baris ini
+        const lebarPola = (n - i) * 2 - 1;
         const spasiTengah = ' '.repeat((maxWidth - lebarPola) / 2);
         
         // Karakter untuk baris saat ini
@@ -27,6 +25,5 @@ function cetakPola(n) {
     }
 }
 
-// Test fungsi
-console.log("Pola untuk n = 5:");
+console.log("cetakPola(5)");
 cetakPola(5);

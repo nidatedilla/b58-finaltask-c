@@ -6,6 +6,10 @@ input {
   border: 1px solid #ff6f91 !important;
 }
 
+.fa-circle-user {
+  font-size: 25px;
+}
+
 .navbar {
     background-color: #ff6f91 !important;
 }
@@ -58,4 +62,13 @@ input {
 
 .btn-danger:hover {
   background-color: #c8237a;
+}
+
+.navbar .user-section {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .user-section form {
+  margin: 0;
 }
